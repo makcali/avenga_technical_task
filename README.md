@@ -422,7 +422,7 @@ This project is created for assessment purposes.
 
 ## 👥 Author
 
-**API Automation Team**
+**Mehmet AKCALI**
 
 For questions or issues, please create a GitHub issue.
 
