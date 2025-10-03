@@ -7,16 +7,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Book model representing the Book entity in the API.
- * Uses Lombok annotations to reduce boilerplate code.
- * Uses Jackson annotations for JSON serialization/deserialization.
- *
- * @author API Automation Team
- * @version 1.0
- */
+
+
 @Data                           // Generates getters, setters, toString, equals, hashCode
-@Builder                        // Enables builder pattern: Book.builder().title("Test").build()
+@Builder(toBuilder = true)                      // Enables builder pattern: Book.builder().title("Test").build()
 @NoArgsConstructor             // Generates no-args constructor
 @AllArgsConstructor            // Generates all-args constructor
 @JsonIgnoreProperties(ignoreUnknown = true)  // Ignores unknown JSON properties
@@ -40,11 +34,7 @@ public class Book {
     @JsonProperty("publishDate")
     private String publishDate;
 
-    /**
-     * Creates a sample book with valid test data.
-     *
-     * @return Book instance with test data
-     */
+
     public static Book createSampleBook() {
         return Book.builder()
                 .title("Sample Book Title")
@@ -55,11 +45,7 @@ public class Book {
                 .build();
     }
 
-    /**
-     * Creates a minimal valid book with required fields only.
-     *
-     * @return Book instance with minimal data
-     */
+
     public static Book createMinimalBook() {
         return Book.builder()
                 .title("Minimal Book")
@@ -67,25 +53,4 @@ public class Book {
                 .build();
     }
 
-    /**
-     * Creates a book with invalid data for negative testing.
-     *
-     * @return Book instance with invalid data
-     */
-    public static Book createInvalidBook() {
-        return Book.builder()
-                .title("")
-                .pageCount(-1)
-                .build();
-    }
-
-    /**
-     * Validates if the book has all required fields.
-     *
-     * @return true if book is valid, false otherwise
-     */
-    public boolean isValid() {
-        return title != null && !title.trim().isEmpty()
-                && pageCount != null && pageCount > 0;
-    }
 }

@@ -107,6 +107,20 @@
             <version>${slf4j.version}</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>1.0.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>4.3.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

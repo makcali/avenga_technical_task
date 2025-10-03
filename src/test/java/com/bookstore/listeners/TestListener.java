@@ -4,14 +4,7 @@ import io.qameta.allure.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.*;
 
-/**
- * Custom TestNG listener for test execution monitoring and reporting.
- * Provides hooks for test lifecycle events.
- * Integrates with Allure for enhanced reporting.
- *
- * @author API Automation Team
- * @version 1.0
- */
+
 @Slf4j
 public class TestListener implements ITestListener, ISuiteListener {
 
@@ -76,34 +69,19 @@ public class TestListener implements ITestListener, ISuiteListener {
         }
     }
 
-    /**
-     * Attaches text log to Allure report.
-     *
-     * @param message log message
-     * @return message for attachment
-     */
+
     @Attachment(value = "Failure Log", type = "text/plain")
     private String saveTextLog(String message) {
         return message;
     }
 
-    /**
-     * Attaches stack trace to Allure report.
-     *
-     * @param stackTrace the stack trace
-     * @return stack trace for attachment
-     */
+
     @Attachment(value = "Stack Trace", type = "text/plain")
     private String saveStackTrace(String stackTrace) {
         return stackTrace;
     }
 
-    /**
-     * Converts throwable to string stack trace.
-     *
-     * @param throwable the exception
-     * @return formatted stack trace
-     */
+
     private String getStackTrace(Throwable throwable) {
         StringBuilder sb = new StringBuilder();
         sb.append(throwable.toString()).append("\n");

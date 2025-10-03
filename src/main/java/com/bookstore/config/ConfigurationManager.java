@@ -6,36 +6,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Singleton Configuration Manager.
- * Manages application configuration using properties file.
- * Thread-safe implementation using double-checked locking.
- *
- * @author API Automation Team
- * @version 1.0
- */
+
 @Slf4j
 public class ConfigurationManager implements Configuration {
 
     private static volatile ConfigurationManager instance;
     private final Properties properties;
 
-    /**
-     * Private constructor to prevent instantiation.
-     * Loads configuration from config.properties file.
-     */
     private ConfigurationManager() {
         properties = new Properties();
         loadProperties();
         log.info("Configuration initialized for environment: {}", getEnvironment());
     }
 
-    /**
-     * Gets the singleton instance using double-checked locking pattern.
-     * Thread-safe lazy initialization.
-     *
-     * @return ConfigurationManager instance
-     */
     public static ConfigurationManager getInstance() {
         if (instance == null) {
             synchronized (ConfigurationManager.class) {
@@ -47,10 +30,7 @@ public class ConfigurationManager implements Configuration {
         return instance;
     }
 
-    /**
-     * Loads properties from config.properties file.
-     * Throws RuntimeException if file is not found.
-     */
+
     private void loadProperties() {
         try (InputStream input = getClass().getClassLoader()
                 .getResourceAsStream("config.properties")) {
@@ -113,24 +93,15 @@ public class ConfigurationManager implements Configuration {
         return getProperty("environment", "dev");
     }
 
-    /**
-     * Gets a string property with default value.
-     *
-     * @param key property key
-     * @param defaultValue default value if property not found
-     * @return property value
-     */
+    @Override
+    public boolean deletionPersistence() {
+        return false;
+    }
+
     private String getProperty(String key, String defaultValue) {
         return properties.getProperty(key, defaultValue);
     }
 
-    /**
-     * Gets an integer property with default value.
-     *
-     * @param key property key
-     * @param defaultValue default value if property not found
-     * @return property value as integer
-     */
     private int getIntProperty(String key, int defaultValue) {
         String value = properties.getProperty(key);
         if (value == null || value.trim().isEmpty()) {
@@ -145,13 +116,6 @@ public class ConfigurationManager implements Configuration {
         }
     }
 
-    /**
-     * Gets a boolean property with default value.
-     *
-     * @param key property key
-     * @param defaultValue default value if property not found
-     * @return property value as boolean
-     */
     private boolean getBooleanProperty(String key, boolean defaultValue) {
         String value = properties.getProperty(key);
         if (value == null || value.trim().isEmpty()) {
@@ -160,10 +124,6 @@ public class ConfigurationManager implements Configuration {
         return Boolean.parseBoolean(value.trim());
     }
 
-    /**
-     * Logs current configuration settings.
-     * Useful for debugging and verification.
-     */
     public void logConfiguration() {
         log.info("=== Configuration Settings ===");
         log.info("Environment: {}", getEnvironment());

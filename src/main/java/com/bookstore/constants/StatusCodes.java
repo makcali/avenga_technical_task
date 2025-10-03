@@ -1,12 +1,5 @@
 package com.bookstore.constants;
 
-/**
- * HTTP status code constants.
- * Provides meaningful names for HTTP response codes.
- *
- * @author API Automation Team
- * @version 1.0
- */
 public final class StatusCodes {
 
     // Private constructor to prevent instantiation
@@ -28,6 +21,7 @@ public final class StatusCodes {
     public static final int METHOD_NOT_ALLOWED = 405;
     public static final int CONFLICT = 409;
     public static final int UNPROCESSABLE_ENTITY = 422;
+    public static final int UNSUPPORTED_MEDIA_TYPE = 415;
 
     // Server Error Codes (5xx)
     public static final int INTERNAL_SERVER_ERROR = 500;
