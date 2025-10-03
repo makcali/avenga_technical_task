@@ -12,7 +12,7 @@
     <!-- All API Tests -->
     <test name="Books API Tests" preserve-order="true">
         <packages>
-            <package name="com.bookstore.tests.books"/>
+            <package name="com.bookstore.tests.*"/>
         </packages>
     </test>
 
